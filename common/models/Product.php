@@ -3,25 +3,28 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\TimestampBehavior;
+use yii\helpers\FileHelper;
 
 /**
  * This is the model class for table "{{%products}}".
  *
- * @property int $id
- * @property string $name
- * @property string|null $description
- * @property string|null $image
- * @property float $price
- * @property int $status
- * @property int|null $created_at
- * @property int|null $updated_at
- * @property int|null $created_by
- * @property int|null $updated_by
+ * @property int          $id
+ * @property string       $name
+ * @property string|null  $description
+ * @property string|null  $image
+ * @property float        $price
+ * @property int          $status
+ * @property int|null     $created_at
+ * @property int|null     $updated_at
+ * @property int|null     $created_by
+ * @property int|null     $updated_by
  *
- * @property CartItems[] $cartItems
+ * @property CartItems[]  $cartItems
  * @property OrderItems[] $orderItems
- * @property User $createdBy
- * @property User $updatedBy
+ * @property User         $createdBy
+ * @property User         $updatedBy
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -31,6 +34,14 @@ class Product extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%products}}';
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+            BlameableBehavior::class
+        ];
     }
 
     /**
