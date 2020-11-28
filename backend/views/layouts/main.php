@@ -55,7 +55,7 @@ AppAsset::register($this);
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="<?php echo \yii\helpers\Url::to(['/product/index']) ?>">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Products</span>
             </a>
@@ -296,7 +296,9 @@ AppAsset::register($this);
             </nav>
             <!-- End of Topbar -->
 
-            <?php echo $content ?>
+            <div class="p-4">
+                <?php echo $content ?>
+            </div>
 
         </div>
         <!-- End of Main Content -->
