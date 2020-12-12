@@ -7,13 +7,13 @@ use Yii;
 /**
  * This is the model class for table "{{%cart_items}}".
  *
- * @property int $id
- * @property int $product_id
- * @property int $quantity
+ * @property int      $id
+ * @property int      $product_id
+ * @property int      $quantity
  * @property int|null $created_by
  *
- * @property User $createdBy
- * @property Product $product
+ * @property User     $createdBy
+ * @property Product  $product
  */
 class CartItem extends \yii\db\ActiveRecord
 {
@@ -40,7 +40,46 @@ class CartItem extends \yii\db\ActiveRecord
                 "SELECT SUM(quantity) FROM cart_items WHERE created_by = :userId", ['userId' => $currUserId]
             )->scalar();
         }
+
         return $sum;
+    }
+
+    public static function getTotalPriceForUser($currUserId)
+    {
+        if (isGuest()) {
+            $cartItems = \Yii::$app->session->get(CartItem::SESSION_KEY, []);
+            $sum = 0;
+            foreach ($cartItems as $cartItem) {
+                $sum += $cartItem['quantity'] * $cartItem['price'];
+            }
+        } else {
+            $sum = CartItem::findBySql(
+                "SELECT SUM(c.quantity * p.price) 
+                    FROM cart_items c 
+                    LEFT JOIN products p on p.id = c.product_id 
+                WHERE c.created_by = :userId", ['userId' => $currUserId]
+            )->scalar();
+        }
+
+        return $sum;
+    }
+
+    public static function getItemsForUser($currUserId)
+    {
+        return CartItem::findBySql(
+                        "SELECT
+                               c.product_id as id,
+                               p.image,
+                               p.name,
+                               p.price,
+                               c.quantity,
+                               p.price * c.quantity as total_price
+                        FROM cart_items c
+                                 LEFT JOIN products p on p.id = c.product_id
+                         WHERE c.created_by = :userId",
+            ['userId' => $currUserId])
+            ->asArray()
+            ->all();
     }
 
     /**
