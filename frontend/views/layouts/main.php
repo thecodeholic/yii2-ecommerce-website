@@ -11,6 +11,8 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
+$cartItemCount = $this->params['cartItemCount'];
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -37,17 +39,33 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        [
+            'label' => 'Cart <span id="cart-quantity" class="badge badge-danger">'.$cartItemCount.'</span>',
+            'url' => ['/cart/index'],
+            'encode' => false
+        ],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->identity->getDisplayName() . ')',
-            'url' => ['/site/logout'],
-            'linkOptions' => [
-                'data-method' => 'post'
+            'label' => Yii::$app->user->identity->getDisplayName(),
+//            'dropDownOptions' => [
+//                'class' => 'dropdown-menu-right'
+//            ],
+            'items' => [
+                [
+                    'label' => 'Profile',
+                    'url' => ['/profile/index'],
+                ],
+                [
+                    'label' => 'Logout',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => [
+                        'data-method' => 'post'
+                    ],
+                ]
             ]
         ];
     }
