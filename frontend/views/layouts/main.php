@@ -40,7 +40,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         [
-            'label' => 'Cart <span id="cart-quantity" class="badge badge-danger">'.$cartItemCount.'</span>',
+            'label' => 'Cart <span id="cart-quantity" class="badge badge-danger">' . $cartItemCount . '</span>',
             'url' => ['/cart/index'],
             'encode' => false
         ],
@@ -84,9 +84,15 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+        <div class="row">
+            <div class="col">
+                <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+            </div>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
+            <div class="col text-right">
+                <p class="pull-right">Created by <a href="https://youtube.com/TheCodeholic" target="_blank">TheCodeholic</a></p>
+            </div>
+        </div>
     </div>
 </footer>
 
