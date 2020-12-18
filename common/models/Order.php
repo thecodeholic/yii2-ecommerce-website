@@ -3,27 +3,31 @@
 namespace common\models;
 
 use Yii;
+use yii\db\Exception;
 
 /**
  * This is the model class for table "{{%orders}}".
  *
- * @property int $id
- * @property float $total_price
- * @property int $status
- * @property string $firstname
- * @property string $lastname
- * @property string $email
- * @property string|null $transaction_id
- * @property int|null $created_at
- * @property int|null $created_by
+ * @property int          $id
+ * @property float        $total_price
+ * @property int          $status
+ * @property string       $firstname
+ * @property string       $lastname
+ * @property string       $email
+ * @property string|null  $transaction_id
+ * @property string|null  $paypal_order_id
+ * @property int|null     $created_at
+ * @property int|null     $created_by
  *
- * @property OrderAddresses $orderAddresses
- * @property OrderItems[] $orderItems
- * @property User $createdBy
+ * @property OrderAddress $orderAddress
+ * @property OrderItem[]  $orderItems
+ * @property User         $createdBy
  */
 class Order extends \yii\db\ActiveRecord
 {
     const STATUS_DRAFT = 0;
+    const STATUS_COMPLETED = 1;
+    const STATUS_FAILURED = 2;
 
     /**
      * {@inheritdoc}
@@ -43,7 +47,7 @@ class Order extends \yii\db\ActiveRecord
             [['total_price'], 'number'],
             [['status', 'created_at', 'created_by'], 'integer'],
             [['firstname', 'lastname'], 'string', 'max' => 45],
-            [['email', 'transaction_id'], 'string', 'max' => 255],
+            [['email', 'transaction_id', 'paypal_order_id'], 'string', 'max' => 255],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
         ];
     }
@@ -61,6 +65,7 @@ class Order extends \yii\db\ActiveRecord
             'lastname' => 'Lastname',
             'email' => 'Email',
             'transaction_id' => 'Transaction ID',
+            'paypal_order_id' => 'Paypal Order ID',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
         ];
@@ -140,4 +145,32 @@ class Order extends \yii\db\ActiveRecord
         )->scalar();
     }
 
+
+    public function sendEmailToVendor()
+    {
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'order_completed_vendor-html', 'text' => 'order_completed_vendor-text'],
+                ['order' => $this]
+            )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setTo(Yii::$app->params['vendorEmail'])
+            ->setSubject('New order has been made at ' . Yii::$app->name)
+            ->send();
+    }
+
+    public function sendEmailToCustomer()
+    {
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'order_completed_customer-html', 'text' => 'order_completed_customer-text'],
+                ['order' => $this]
+            )
+            ->setFrom([Yii::$app->params['supportEmail'] => Yii::$app->name . ' robot'])
+            ->setTo($this->email)
+            ->setSubject('Your orders is confirmed at ' . Yii::$app->name)
+            ->send();
+    }
 }
