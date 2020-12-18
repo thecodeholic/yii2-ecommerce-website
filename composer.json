@@ -23,7 +23,8 @@
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "yiisoft/yii2-bootstrap4": "^2.0",
-        "2amigos/yii2-ckeditor-widget": "2.1.0"
+        "2amigos/yii2-ckeditor-widget": "2.1.0",
+        "paypal/paypal-checkout-sdk": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
