@@ -43,7 +43,7 @@ AppAsset::register($this);
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="<?php echo Yii::$app->homeUrl ?>">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -348,6 +348,7 @@ AppAsset::register($this);
 </div>
 
 <?php $this->endBody() ?>
+<?php echo $this->blocks['bodyEndScript'] ?? '' ?>
 </body>
 </html>
 <?php $this->endPage() ?>
