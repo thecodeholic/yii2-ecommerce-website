@@ -56,8 +56,16 @@ AppAsset::register($this);
         <!-- Nav Item - Charts -->
         <li class="nav-item">
             <a class="nav-link" href="<?php echo \yii\helpers\Url::to(['/product/index']) ?>">
-                <i class="fas fa-fw fa-chart-area"></i>
+                <i class="fas fa-fw fa-list"></i>
                 <span>Products</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="<?php echo \yii\helpers\Url::to(['/order/index']) ?>">
+                <i class="fas fa-money-check-alt"></i>
+                <span>Orders</span>
             </a>
         </li>
 

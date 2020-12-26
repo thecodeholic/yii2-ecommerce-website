@@ -21,23 +21,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
+        'id' => 'ordersTable',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pager' => [
+            'class' => \yii\bootstrap4\LinkPager::class
+        ],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'total_price',
-            'status',
-            'firstname',
-            'lastname',
+            [
+                'attribute' => 'id',
+                'contentOptions' => ['style' => 'width: 80px;']
+            ],
+            [
+                'attribute' => 'fullname',
+                'content' => function ($model) {
+                    return $model->firstname . ' ' . $model->lastname;
+                },
+            ],
+            'total_price:currency',
             //'email:email',
             //'transaction_id',
             //'paypal_order_id',
-            //'created_at',
+            'status:orderStatus',
+            'created_at:datetime',
             //'created_by',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'common\grid\ActionColumn',
+                'template' => '{view} {delete}'
+            ],
         ],
     ]); ?>
 
