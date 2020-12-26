@@ -75,9 +75,6 @@ class OrderSearch extends Order
         if ($this->fullname) {
             $query->andWhere("CONCAT(firstname, ' ', lastname) LIKE :fullname", ['fullname' => "%{$this->fullname}%"]);
         }
-        echo '<pre>';
-        var_dump($this->status);
-        echo '</pre>';
 
         // grid filtering conditions
         $query->andFilterWhere([

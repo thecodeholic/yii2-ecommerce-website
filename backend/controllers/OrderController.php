@@ -31,6 +31,7 @@ class OrderController extends Controller
 
     /**
      * Lists all Order models.
+     *
      * @return mixed
      */
     public function actionIndex()
@@ -46,6 +47,7 @@ class OrderController extends Controller
 
     /**
      * Displays a single Order model.
+     *
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,19 +60,28 @@ class OrderController extends Controller
     }
 
     /**
-     * Creates a new Order model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Updates an existing Order model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     *
+     * @param integer $id
      * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionCreate()
+    public function actionUpdate($id)
     {
-        $model = new Order();
+        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isPost) {
+            $status = Yii::$app->request->post('Order')['status'];
+            $model->status = $status;
+            if (!in_array($status, [Order::STATUS_COMPLETED, Order::STATUS_PAID])) {
+                $model->addError('status', 'Invalid Status');
+            } else if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
-        return $this->render('create', [
+        return $this->render('update', [
             'model' => $model,
         ]);
     }
@@ -78,6 +89,7 @@ class OrderController extends Controller
     /**
      * Deletes an existing Order model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
+     *
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -92,13 +104,14 @@ class OrderController extends Controller
     /**
      * Finds the Order model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
+     *
      * @param integer $id
      * @return Order the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Order::findOne($id)) !== null) {
+        if (( $model = Order::findOne($id) ) !== null) {
             return $model;
         }
 

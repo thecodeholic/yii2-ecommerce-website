@@ -14,10 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -55,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'common\grid\ActionColumn',
-                'template' => '{view} {delete}'
+                'template' => '{view} {update} {delete}'
             ],
         ],
     ]); ?>
