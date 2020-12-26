@@ -244,6 +244,7 @@ class CartController extends \frontend\base\Controller
 
         $response = $client->execute(new OrdersGetRequest($paypalOrderId));
 
+        // @TODO Save the response information in logs
         if ($response->statusCode === 200) {
             $order->paypal_order_id = $paypalOrderId;
             $paidAmount = 0;
@@ -252,7 +253,7 @@ class CartController extends \frontend\base\Controller
                     $paidAmount += $purchase_unit->amount->value;
                 }
             }
-            if ($paidAmount === $order->total_price && $response->result->status === 'COMPLETED') {
+            if ($paidAmount === (float)$order->total_price && $response->result->status === 'COMPLETED') {
                 $order->status = Order::STATUS_COMPLETED;
             }
             $order->transaction_id = $response->result->purchase_units[0]->payments->captures[0]->id;
