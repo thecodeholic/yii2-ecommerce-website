@@ -10,21 +10,21 @@ use yii\helpers\FileHelper;
 /**
  * This is the model class for table "{{%products}}".
  *
- * @property int          $id
- * @property string       $name
- * @property string|null  $description
- * @property string|null  $image
- * @property float        $price
- * @property int          $status
- * @property int|null     $created_at
- * @property int|null     $updated_at
- * @property int|null     $created_by
- * @property int|null     $updated_by
+ * @property int         $id
+ * @property string      $name
+ * @property string|null $description
+ * @property string|null $image
+ * @property float       $price
+ * @property int         $status
+ * @property int|null    $created_at
+ * @property int|null    $updated_at
+ * @property int|null    $created_by
+ * @property int|null    $updated_by
  *
- * @property CartItems[]  $cartItems
- * @property OrderItems[] $orderItems
- * @property User         $createdBy
- * @property User         $updatedBy
+ * @property CartItem[]  $cartItems
+ * @property OrderItem[] $orderItems
+ * @property User        $createdBy
+ * @property User        $updatedBy
  */
 class Product extends \yii\db\ActiveRecord
 {
@@ -88,23 +88,23 @@ class Product extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[CartItems]].
+     * Gets query for [[CartItem]].
      *
-     * @return \yii\db\ActiveQuery|\common\models\query\CartItemsQuery
+     * @return \yii\db\ActiveQuery|\common\models\query\CartItemQuery
      */
     public function getCartItems()
     {
-        return $this->hasMany(CartItems::className(), ['product_id' => 'id']);
+        return $this->hasMany(CartItem::className(), ['product_id' => 'id']);
     }
 
     /**
-     * Gets query for [[OrderItems]].
+     * Gets query for [[OrderItem]].
      *
-     * @return \yii\db\ActiveQuery|\common\models\query\OrderItemsQuery
+     * @return \yii\db\ActiveQuery|\common\models\query\OrderItemQuery
      */
     public function getOrderItems()
     {
-        return $this->hasMany(OrderItems::className(), ['product_id' => 'id']);
+        return $this->hasMany(OrderItem::className(), ['product_id' => 'id']);
     }
 
     /**

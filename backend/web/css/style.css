@@ -1,10 +1,10 @@
-#ordersTable td,
-#ordersTable th{
+table td,
+table th{
     white-space: nowrap;
 }
 
-#ordersTable th a.desc:after,
-#ordersTable th a.asc:after{
+table th a.desc:after,
+table th a.asc:after{
     -webkit-font-smoothing: antialiased;
     display: inline-block;
     font-style: normal;
@@ -15,10 +15,10 @@
     font-weight: 900;
     margin-left: 10px;
 }
-#ordersTable th a.desc:after {
+table th a.desc:after {
     content: "\f078";
 }
 
-#ordersTable th a.asc:after {
+table th a.asc:after {
     content: "\f077";
 }

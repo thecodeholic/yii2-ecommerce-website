@@ -38,6 +38,7 @@ return [
             'errorAction' => 'site/error',
         ],
         'assetManager' => [
+            'appendTimestamp' => true,
             'bundles' => [
                 \yii\bootstrap4\BootstrapAsset::class => false
             ]
