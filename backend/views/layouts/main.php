@@ -32,9 +32,9 @@ AppAsset::register($this);
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-<!--            <div class="sidebar-brand-icon rotate-n-15">-->
-<!--                <i class="fas fa-laugh-wink"></i>-->
-<!--            </div>-->
+            <!--            <div class="sidebar-brand-icon rotate-n-15">-->
+            <!--                <i class="fas fa-laugh-wink"></i>-->
+            <!--            </div>-->
             <div class="sidebar-brand-text mx-3">Yii2 E-commerce</div>
         </a>
 
@@ -142,8 +142,14 @@ AppAsset::register($this);
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2020</span>
+                <div class="row copyright">
+                    <div class="col">
+                        &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>
+                    </div>
+
+                    <div class="col text-right">
+                        Created by <a href="https://youtube.com/TheCodeholic" target="_blank">TheCodeholic</a>
+                    </div>
                 </div>
             </div>
         </footer>
