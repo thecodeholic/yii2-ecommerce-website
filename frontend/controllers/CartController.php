@@ -254,7 +254,7 @@ class CartController extends \frontend\base\Controller
                 }
             }
             if ($paidAmount === (float)$order->total_price && $response->result->status === 'COMPLETED') {
-                $order->status = Order::STATUS_COMPLETED;
+                $order->status = Order::STATUS_PAID;
             }
             $order->transaction_id = $response->result->purchase_units[0]->payments->captures[0]->id;
             if  ($order->save()) {
