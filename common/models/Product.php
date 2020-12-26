@@ -184,4 +184,13 @@ class Product extends \yii\db\ActiveRecord
     {
         return \yii\helpers\StringHelper::truncateWords(strip_tags($this->description), 30);
     }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        if ($this->image) {
+            $dir = Yii::getAlias('@frontend/web/storage'). dirname($this->image);
+            FileHelper::removeDirectory($dir);
+        }
+    }
 }
