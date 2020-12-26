@@ -20,6 +20,7 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property string $auth_key
  * @property integer $status
+ * @property integer $admin
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
@@ -31,6 +32,8 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
+
+    public const SCENARIO_UPDATE = 'update';
 
     public $password;
     public $password_repeat;
@@ -53,6 +56,13 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function scenarios()
+    {
+        return array_merge(parent::scenarios(), [
+            self::SCENARIO_UPDATE => ['firstname', 'lastname', 'email', 'username', 'password', 'password_repeat']
+        ]);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -64,6 +74,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             ['password', 'string', 'min' => 8],
+            ['admin', 'default', 'value' => 0],
             ['password_repeat', 'compare', 'compareAttribute' => 'password']
         ];
     }
