@@ -11,7 +11,8 @@ use yii\bootstrap4\ActiveForm;
 $this->title = 'Login';
 ?>
 <div class="row">
-    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"
+         style="background-size: contain; background-repeat: no-repeat; background-image: url('/img/undraw_web_shopping_dd4l.svg')"></div>
     <div class="col-lg-6">
         <div class="p-5">
             <div class="text-center">
@@ -42,7 +43,8 @@ $this->title = 'Login';
             <?php ActiveForm::end() ?>
             <hr>
             <div class="text-center">
-                <a class="small" href="<?php echo \yii\helpers\Url::to(['/site/forgot-password']) ?>">Forgot Password?</a>
+                <a class="small" href="<?php echo \yii\helpers\Url::to(['/site/forgot-password']) ?>">Forgot
+                    Password?</a>
             </div>
         </div>
     </div>
