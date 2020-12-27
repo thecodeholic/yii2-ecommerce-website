@@ -69,7 +69,7 @@ $orderAddress = $model->orderAddress;
         <?php foreach ($model->orderItems as $item): ?>
             <tr>
                 <td>
-                    <img src="<?php echo $item->product->getImageUrl() ?>"
+                    <img src="<?php echo $item->product ? $item->product->getImageUrl() : \common\models\Product::formatImageUrl(null) ?>"
                          style="width: 50px;">
                 </td>
                 <td><?php echo $item->product_name ?></td>
