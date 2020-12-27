@@ -1,5 +1,7 @@
-table td,
-table th{
+.td-actions{
+    white-space: nowrap;
+}
+.table th {
     white-space: nowrap;
 }
 

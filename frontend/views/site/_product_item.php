@@ -7,13 +7,13 @@
 /** @var \common\models\Product $model */
 ?>
     <div class="card h-100">
-        <a href="#">
+        <a href="#" class="img-wrapper">
             <img class="card-img-top" src="<?php echo $model->getImageUrl() ?>" alt="">
         </a>
         <div class="card-body">
-            <h4 class="card-title">
-                <a href="#"><?php echo $model->name ?></a>
-            </h4>
+            <h5 class="card-title">
+                <a href="#" class="text-dark"><?php echo \yii\helpers\StringHelper::truncateWords($model->name, 20) ?></a>
+            </h5>
             <h5><?php echo Yii::$app->formatter->asCurrency($model->price) ?></h5>
             <div class="card-text">
                 <?php echo $model->getShortDescription() ?>
