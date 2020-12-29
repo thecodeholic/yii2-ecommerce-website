@@ -17,30 +17,6 @@ class m201226_071858_change_product_id_foreign_key_on_order_item_table extends M
             '{{%fk-order_items-product_id}}',
             '{{%order_items}}'
         );
-
-        // drops index for column `product_id`
-        $this->dropIndex(
-            '{{%idx-order_items-product_id}}',
-            '{{%order_items}}'
-        );
-
-
-        // creates index for column `product_id`
-        $this->createIndex(
-            '{{%idx-order_items-product_id}}',
-            '{{%order_items}}',
-            'product_id'
-        );
-
-        // add foreign key for table `{{%products}}`
-        $this->addForeignKey(
-            '{{%fk-order_items-product_id}}',
-            '{{%order_items}}',
-            'product_id',
-            '{{%products}}',
-            'id',
-            'NO NULL'
-        );
     }
 
     /**
