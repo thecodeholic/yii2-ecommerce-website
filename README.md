@@ -11,12 +11,13 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
 ## Installation
 1. Clone the repository
 
-2. Go to the project root directory and run `composer install`
-3. Run `php init` from the project root directory and configure for your environment
-4. Open `common/config/main-local.php`
+1. Go to the project root directory and run `composer install`
+1. Run `php init` from the project root directory and configure for your environment
+1. Open `common/config/main-local.php`
+    - Create the database
     - Configure database credentials by changing the following lines
         ```php
-        'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+        'dsn' => 'mysql:host=localhost;dbname=your_website_db',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -35,6 +36,73 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
             ],
         ],
         ```
-5. Open `common/config/params-local.php`, paste the following key value pairs
+1. Run `php yii migrate` to apply all system migrations.
+1. Create virtual hosts for `frontend/web` and `backend/web` directories.
+    Virtual Host templates
+    ```
+    <VirtualHost *:80>
+        ServerName yii2-ecommerce.localhost
+        DocumentRoot "/path/to/ecommerce-website/frontend/web/"
+        
+        <Directory "/path/to/ecommerce-website/frontend/web/">
+            # use mod_rewrite for pretty URL support
+            RewriteEngine on
+            # If a directory or a file exists, use the request directly
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            # Otherwise forward the request to index.php
+            RewriteRule . index.php
+
+            # use index.php as index file
+            DirectoryIndex index.php
+
+            # ...other settings...
+            # Apache 2.4
+            Require all granted
+            
+            ## Apache 2.2
+            # Order allow,deny
+            # Allow from all
+        </Directory>
+    </VirtualHost>
+    
+    
+    <VirtualHost *:80>
+        ServerName backend.yii2-ecommerce.localhost
+        DocumentRoot "/path/to/ecommerce-website/backend/web/"
+        
+        <Directory "/path/to/ecommerce-website/backend/web/">
+            # use mod_rewrite for pretty URL support
+            RewriteEngine on
+            # If a directory or a file exists, use the request directly
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            # Otherwise forward the request to index.php
+            RewriteRule . index.php
+
+            # use index.php as index file
+            DirectoryIndex index.php
+
+            # ...other settings...
+            # Apache 2.4
+            Require all granted
+            
+            ## Apache 2.2
+            # Order allow,deny
+            # Allow from all
+        </Directory>
+    </VirtualHost>
+    ```
+5. Open `common/config/params-local.php` and replace the content with the following code
+    Make sure you [create PayPal application](https://developer.paypal.com/developer/applications/) and take ClientId and Secret.
+    ```php
+    <?php
+    return [
+        'frontendUrl' => 'YOUR_FRONTEND_HOST', // Ex: http://yii2-ecommerce.localhost
+        'paypalClientId' => '',
+        'paypalSecret' => '',
+        'vendorEmail' => 'admin@yourwebsite.com'
+    ];
+    ```
     
     
