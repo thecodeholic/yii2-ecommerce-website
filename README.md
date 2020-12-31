@@ -6,21 +6,44 @@
     <br>
 </p>
 
-Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.com/yiisoft/yii2-app-advanced)
+Yii2 E-commerce system
+
+
+## Features
+ - Bootstrap 4
+ - Custom [Admin template](https://startbootstrap.com/theme/sb-admin-2) in backend
+ - Product Management
+ - Implement cart page
+ - Checkout for guests
+ - Checkout for authorized users
+ - Sending email when order is made
+ - Payments with PayPal - [PayPal buttons](https://developer.paypal.com/demo/checkout/#/pattern/client)
+ - Order validation
+ - Display order in backend
+ - Dashboard with basic statistics
+    - Total earnings
+    - Total products sold
+    - Total number of orders made
+    - Total users
+    - Earnings by day
+    - Revenue by country
+
+## Demo
+
+I am working on demo. It will be available soon.
 
 ## Installation
 1. Clone the repository
-
 1. Go to the project root directory and run `composer install`
-1. Run `php init` from the project root directory and configure for your environment
+1. Run `php init` from the project root directory and choose your desired environment
+1. Create the database
 1. Open `common/config/main-local.php`
-    - Create the database
     - Configure database credentials by changing the following lines
         ```php
         'dsn' => 'mysql:host=localhost;dbname=your_website_db',
         'username' => 'root',
         'password' => '',
-        'charset' => 'utf8',
+        'charset' => 'utf8mb4',
         ```
     - If you want to use real SMTP credentials to send emails, configure the mail provider by replacing `mailer` component with the following code
         ```php
@@ -93,7 +116,7 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
         </Directory>
     </VirtualHost>
     ```
-5. Open `common/config/params-local.php` and replace the content with the following code
+1. Open `common/config/params-local.php` and replace the content with the following code
     Make sure you [create PayPal application](https://developer.paypal.com/developer/applications/) and take ClientId and Secret.
     ```php
     <?php
@@ -105,4 +128,10 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
     ];
     ```
     
+    
+## Create admin user
+Run the following console command to create admin user. PASSWORD is optional, you can skip it and system will generate a random password
+```bash
+php yii app/create-admin-user USERNAME [PASSWORD]
+```
     
