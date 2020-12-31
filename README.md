@@ -105,4 +105,9 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
     ];
     ```
     
+## Create admin user
+Run the following console command to create admin user. PASSWORD is optional, you can skip it and system will generate a random password
+```bash
+php yii app/create-admin-user USERNAME [PASSWORD]
+```
     
