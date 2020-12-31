@@ -13,8 +13,8 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
 
 1. Go to the project root directory and run `composer install`
 1. Run `php init` from the project root directory and choose your desired environment
+1. Create the database
 1. Open `common/config/main-local.php`
-    - Create the database
     - Configure database credentials by changing the following lines
         ```php
         'dsn' => 'mysql:host=localhost;dbname=your_website_db',
