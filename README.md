@@ -20,7 +20,7 @@ Yii2 E-commerce system built on top of [Yii2 Advanced Template](https://github.c
         'dsn' => 'mysql:host=localhost;dbname=your_website_db',
         'username' => 'root',
         'password' => '',
-        'charset' => 'utf8',
+        'charset' => 'utf8mb4',
         ```
     - If you want to use real SMTP credentials to send emails, configure the mail provider by replacing `mailer` component with the following code
         ```php
