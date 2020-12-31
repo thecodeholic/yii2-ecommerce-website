@@ -128,6 +128,11 @@ I am working on demo. It will be available soon.
     ];
     ```
     
+## Create admin user
+Run the following console command to create admin user. PASSWORD is optional, you can skip it and system will generate a random password
+```bash
+php yii app/create-admin-user USERNAME [PASSWORD]
+```
     
 ## Create admin user
 Run the following console command to create admin user. PASSWORD is optional, you can skip it and system will generate a random password
