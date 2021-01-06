@@ -29,7 +29,7 @@ class ProfileController extends \frontend\base\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'updated-address', 'update-account'],
+                        'actions' => ['index', 'update-address', 'update-account'],
                         'allow' => true,
                         'roles' => ['@'],
                     ]

@@ -1,11 +1,16 @@
 <?php
+
 namespace backend\controllers;
 
+use backend\models\PasswordResetRequestForm;
+use backend\models\ResetPasswordForm;
 use common\models\Order;
 use common\models\OrderItem;
 use common\models\User;
 use Yii;
+use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
+use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
@@ -26,7 +31,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'forgot-password', 'error'],
+                        'actions' => ['login', 'forgot-password', 'reset-password', 'error'],
                         'allow' => true,
                     ],
                     [
@@ -68,7 +73,7 @@ class SiteController extends Controller
         $totalOrders = Order::find()->paid()->count();
         $totalProducts = OrderItem::find()
             ->alias('oi')
-            ->innerJoin(Order::tableName().' o', 'o.id = oi.order_id')
+            ->innerJoin(Order::tableName() . ' o', 'o.id = oi.order_id')
             ->andWhere(['o.status' => [Order::STATUS_PAID, Order::STATUS_COMPLETED]])
             ->sum('quantity');
         $totalUsers = User::find()->andWhere(['status' => User::STATUS_ACTIVE])->count();
@@ -78,7 +83,7 @@ class SiteController extends Controller
                             CAST(DATE_FORMAT(FROM_UNIXTIME(o.created_at), '%Y-%m-%d %H:%i:%s') as DATE) as `date`,
                             SUM(o.total_price) as `total_price`
                             FROM orders o
-                        WHERE o.status IN (".Order::STATUS_PAID.", ".Order::STATUS_COMPLETED.")
+                        WHERE o.status IN (" . Order::STATUS_PAID . ", " . Order::STATUS_COMPLETED . ")
                         GROUP BY CAST(DATE_FORMAT(FROM_UNIXTIME(o.created_at), '%Y-%m-%d %H:%i:%s') as DATE)
                         ORDER BY o.created_at")
             ->asArray()
@@ -94,7 +99,7 @@ class SiteController extends Controller
             while ($d->getTimestamp() < $nowDate->getTimestamp()) {
                 $label = $d->format('d/m/Y');
                 $labels[] = $label;
-                $earningsData[] = (float)($orderByPriceMap[$d->format('Y-m-d')] ?? 0);
+                $earningsData[] = (float)( $orderByPriceMap[$d->format('Y-m-d')] ?? 0 );
                 $d->setTimestamp($d->getTimestamp() + 86400);
             }
         }
@@ -105,7 +110,7 @@ class SiteController extends Controller
                    SUM(total_price) as total_price
             FROM orders o
                      INNER JOIN order_addresses oa on o.id = oa.order_id
-            WHERE o.status IN (".Order::STATUS_PAID.", ".Order::STATUS_COMPLETED.")
+            WHERE o.status IN (" . Order::STATUS_PAID . ", " . Order::STATUS_COMPLETED . ")
             GROUP BY country
         ")
             ->asArray()
@@ -160,7 +165,48 @@ class SiteController extends Controller
 
     public function actionForgotPassword()
     {
-        return "Forgot password";
+        $this->layout = 'blank';
+        $model = new PasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+            }
+        }
+
+        return $this->render('forgot_password', [
+            'model' => $model,
+        ]);
+    }
+    /**
+     * Resets password.
+     *
+     * @param string $token
+     * @return mixed
+     * @throws BadRequestHttpException
+     */
+    public function actionResetPassword($token)
+    {
+        $this->layout = 'blank';
+
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidArgumentException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'New password saved.');
+
+            return $this->goHome();
+        }
+
+        return $this->render('reset_password', [
+            'model' => $model,
+        ]);
     }
 
     /**
