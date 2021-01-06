@@ -1,7 +1,7 @@
 {
   "name": "yii2-ecommerce",
   "version": "1.0.0",
-  "description": "<p align=\"center\">     <a href=\"https://github.com/yiisoft\" target=\"_blank\">         <img src=\"https://avatars0.githubusercontent.com/u/993323\" height=\"100px\">     </a>     <h1 align=\"center\">Yii 2 Advanced Project Template</h1>     <br> </p>",
+  "description": "Open Source Yii2 E-commerce website",
   "main": "index.js",
   "scripts": {
     "dev": "npx webpack --config webpack.dev.js",
@@ -12,8 +12,8 @@
     "url": "git+https://github.com/thecodeholic/yii2-ecommerce-website.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Zura Sekhniashvili <zurasekhniashvili@gmail.com>",
+  "license": "BSD",
   "bugs": {
     "url": "https://github.com/thecodeholic/yii2-ecommerce-website/issues"
   },
