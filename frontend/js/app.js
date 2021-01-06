@@ -1,6 +1,8 @@
 /**
  * Created by TheCodeholic on 12/12/2020.
  */
+import "../scss/style.scss";
+
 $(function(){
   const $cartQuantity = $('#cart-quantity');
   const $addToCart = $('.btn-add-to-cart');

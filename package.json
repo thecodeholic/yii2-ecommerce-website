@@ -4,8 +4,8 @@
   "description": "<p align=\"center\">     <a href=\"https://github.com/yiisoft\" target=\"_blank\">         <img src=\"https://avatars0.githubusercontent.com/u/993323\" height=\"100px\">     </a>     <h1 align=\"center\">Yii 2 Advanced Project Template</h1>     <br> </p>",
   "main": "index.js",
   "scripts": {
-    "start": "npx webpack",
-    "build": "npx webpack --config webpack.config-prod.js"
+    "dev": "npx webpack --config webpack.dev.js",
+    "prod": "npx webpack --config webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "webpack-merge": "^5.7.3"
   }
 }
