@@ -127,6 +127,25 @@ I am working on demo. It will be available soon.
         'vendorEmail' => 'admin@yourwebsite.com'
     ];
     ```
+   
+## Building assets
+The project uses webpack to build the assets.<br>
+The project styles and bootstrap styles are built together.
+Source files are located in `frontend/scss` and `backend/js`.
+
+#### Bootstrap customization
+If you want to customize bootstrap variables, open `frontend/scss/bootstrap-variables.scss`
+and override any bootstrap variable.<br>
+Check [the following link](https://getbootstrap.com/docs/4.0/getting-started/theming/) for more information about bootstrap customization
+
+
+#### For Development
+Run`npm run dev` to build the files and start watching them. This will generate unminified versions of the files
+and will generate source maps as well
+
+#### For production
+Run `npm run prod` to build the files for production. This will generate minified files.
+
     
 ## Create admin user
 Run the following console command to create admin user. PASSWORD is optional, you can skip it and system will generate a random password
