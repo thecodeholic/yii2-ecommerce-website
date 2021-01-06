@@ -25,18 +25,3 @@ body {
     color: #c55;
     font-style: italic;
 }
-
-.img-wrapper {
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.img-wrapper img {
-    width: auto;
-    max-width: 100%;
-    max-height: 100%;
-    margin: 0 auto;
-    display: block;
-}
