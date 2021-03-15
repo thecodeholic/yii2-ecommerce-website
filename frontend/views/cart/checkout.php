@@ -22,7 +22,7 @@ use yii\bootstrap4\ActiveForm;
     <div class="col">
         <div class="card mb-3">
             <div class="card-header">
-                <h5>Account information</h5>
+                <h5><?php echo Yii::t('app', 'Account information') ?></h5>
             </div>
             <div class="card-body">
                 <div class="row">

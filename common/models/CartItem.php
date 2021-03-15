@@ -137,10 +137,10 @@ class CartItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'product_id' => 'Product ID',
-            'quantity' => 'Quantity',
-            'created_by' => 'Created By',
+            'id' => Yii::t('app', 'ID'),
+            'product_id' => Yii::t('app', 'Product ID'),
+            'quantity' => Yii::t('app', 'Quantity'),
+            'created_by' => Yii::t('app', 'Created By'),
         ];
     }
 

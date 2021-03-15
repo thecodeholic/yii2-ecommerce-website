@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-5">
             <h1><?= Html::encode($this->title) ?></h1>
 
-            <p><?php echo Yii::t('app', 'Please fill out the following fields to login:') ?></p>
+            <p><?php echo Yii::t('app', 'Please fill out the following fields to login') ?></p>
 
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
@@ -27,13 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
             <div style="color:#999;margin:1em 0">
-                If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                <?php echo Yii::t('app', 'If you forgot your password you can {0}', Html::a(Yii::t('app', 'reset it'), ['site/request-password-reset'])) ?>.
                 <br>
-                Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
+                <?php echo Yii::t('app', 'Need new verification email?') ?> <?= Html::a(Yii::t('app', 'Resend'), ['site/resend-verification-email']) ?>
             </div>
 
             <div class="form-group">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

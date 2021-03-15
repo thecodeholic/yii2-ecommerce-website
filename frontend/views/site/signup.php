@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-lg-6">
             <h1><?= Html::encode($this->title) ?></h1>
 
-            <p>Please fill out the following fields to signup:</p>
+            <p><?php echo Yii::t('app', 'Please fill out the following fields to signup:') ?></p>
             <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
 
             <div class="row">
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->passwordInput() ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Signup'), ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

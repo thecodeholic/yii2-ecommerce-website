@@ -15,7 +15,7 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                Address information
+                <?php echo Yii::t('app', 'Address information') ?>
             </div>
             <div class="card-body">
 
@@ -32,7 +32,7 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                Account information
+                <?php echo Yii::t('app', 'Account information') ?>
             </div>
             <div class="card-body">
                 <?php \yii\widgets\Pjax::begin([

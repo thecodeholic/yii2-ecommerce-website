@@ -40,7 +40,7 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         [
-            'label' => 'Cart <span id="cart-quantity" class="badge badge-danger">' . $cartItemCount . '</span>',
+            'label' => Yii::t('app', 'Cart').' <span id="cart-quantity" class="badge badge-danger">' . $cartItemCount . '</span>',
             'url' => ['/cart/index'],
             'encode' => false
         ],
@@ -56,11 +56,11 @@ AppAsset::register($this);
 //            ],
             'items' => [
                 [
-                    'label' => 'Profile',
+                    'label' => Yii::t('app', 'Profile'),
                     'url' => ['/profile/index'],
                 ],
                 [
-                    'label' => 'Logout',
+                    'label' => Yii::t('app', 'Logout'),
                     'url' => ['/site/logout'],
                     'linkOptions' => [
                         'data-method' => 'post'

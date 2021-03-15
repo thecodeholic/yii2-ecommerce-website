@@ -17,14 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             <h1><?= Html::encode($this->title) ?></h1>
 
-            <p>Please fill out your email. A link to reset password will be sent there.</p>
+            <p><?php echo Yii::t('app', 'Please fill out your email. A link to reset password will be sent there.') ?></p>
 
             <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
 
             <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
 
             <div class="form-group">
-                <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                <?= Html::submitButton(Yii::t('app', 'Send'), ['class' => 'btn btn-primary']) ?>
             </div>
 
             <?php ActiveForm::end(); ?>

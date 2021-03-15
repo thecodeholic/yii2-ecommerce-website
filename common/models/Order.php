@@ -60,16 +60,16 @@ class Order extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'total_price' => 'Total Price',
-            'status' => 'Status',
-            'firstname' => 'Firstname',
-            'lastname' => 'Lastname',
-            'email' => 'Email',
-            'transaction_id' => 'Transaction ID',
-            'paypal_order_id' => 'Paypal Order ID',
-            'created_at' => 'Created At',
-            'created_by' => 'Created By',
+            'id' => Yii::t('app', 'ID'),
+            'total_price' => Yii::t('app', 'Total Price'),
+            'status' => Yii::t('app', 'Status'),
+            'firstname' => Yii::t('app', 'Firstname'),
+            'lastname' => Yii::t('app', 'Lastname'),
+            'email' => Yii::t('app', 'Email'),
+            'transaction_id' => Yii::t('app', 'Transaction ID'),
+            'paypal_order_id' => Yii::t('app', 'Paypal Order ID'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'created_by' => Yii::t('app', 'Created By'),
         ];
     }
 

@@ -10,20 +10,20 @@ use yii\web\IdentityInterface;
 /**
  * User model
  *
- * @property integer $id
- * @property string $firstname
- * @property string $lastname
- * @property string $username
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $verification_token
- * @property string $email
- * @property string $auth_key
- * @property integer $status
- * @property integer $admin
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
+ * @property integer                      $id
+ * @property string                       $firstname
+ * @property string                       $lastname
+ * @property string                       $username
+ * @property string                       $password_hash
+ * @property string                       $password_reset_token
+ * @property string                       $verification_token
+ * @property string                       $email
+ * @property string                       $auth_key
+ * @property integer                      $status
+ * @property integer                      $admin
+ * @property integer                      $created_at
+ * @property integer                      $updated_at
+ * @property string                       $password write-only password
  *
  * @property \common\models\UserAddress[] $addresses
  */
@@ -81,6 +81,26 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'I'),
+            'firstname' => Yii::t('app', 'Firstname'),
+            'lastname' => Yii::t('app', 'Lastname'),
+            'username' => Yii::t('app', 'Username'),
+            'password_hash' => Yii::t('app', 'Password Hash'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'verification_token' => Yii::t('app', 'Verification Token'),
+            'email' => Yii::t('app', 'Email'),
+            'auth_key' => Yii::t('app', 'Auth Key'),
+            'status' => Yii::t('app', 'Status'),
+            'admin' => Yii::t('app', 'Is Admin'),
+            'created_at' => Yii::t('app', 'Created_at'),
+            'updated_at' => Yii::t('app', 'Updated_at'),
+            'password' => Yii::t('app', 'Password'),
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -132,7 +152,8 @@ class User extends ActiveRecord implements IdentityInterface
      * @param string $token verify email token
      * @return static|null
      */
-    public static function findByVerificationToken($token) {
+    public static function findByVerificationToken($token)
+    {
         return static::findOne([
             'verification_token' => $token,
             'status' => self::STATUS_INACTIVE
@@ -151,8 +172,9 @@ class User extends ActiveRecord implements IdentityInterface
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+
         return $timestamp + $expire >= time();
     }
 
@@ -235,7 +257,8 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function getDisplayName()
     {
-        $fullName = trim($this->firstname.' '.$this->lastname);
+        $fullName = trim($this->firstname . ' ' . $this->lastname);
+
         return $fullName ?: $this->email;
     }
 
@@ -256,6 +279,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $address = $this->addresses[0] ?? new UserAddress();
         $address->user_id = $this->id;
+
         return $address;
     }
 

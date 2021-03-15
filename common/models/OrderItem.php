@@ -48,12 +48,12 @@ class OrderItem extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'product_name' => 'Product Name',
-            'product_id' => 'Product ID',
-            'unit_price' => 'Unit Price',
-            'order_id' => 'Order ID',
-            'quantity' => 'Quantity',
+            'id' => Yii::t('app', 'ID'),
+            'product_name' => Yii::t('app', 'Product Name'),
+            'product_id' => Yii::t('app', 'Product ID'),
+            'unit_price' => Yii::t('app', 'Unit Price'),
+            'order_id' => Yii::t('app', 'Order ID'),
+            'quantity' => Yii::t('app', 'Quantity'),
         ];
     }
 

@@ -15,7 +15,7 @@ use yii\bootstrap4\ActiveForm;
 
 <?php if (isset($success) && $success): ?>
     <div class="alert alert-success">
-        Your address was successfully updated
+        <?php echo Yii::t('app', 'Your address was successfully updated') ?>
     </div>
 <?php endif ?>
 
@@ -30,5 +30,5 @@ use yii\bootstrap4\ActiveForm;
 <?= $addressForm->field($userAddress, 'state') ?>
 <?= $addressForm->field($userAddress, 'country') ?>
 <?= $addressForm->field($userAddress, 'zipcode') ?>
-<button class="btn btn-primary">Update</button>
+<button class="btn btn-primary"><?php echo Yii::t('app', 'Update') ?></button>
 <?php ActiveForm::end() ?>

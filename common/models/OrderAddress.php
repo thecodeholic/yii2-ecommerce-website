@@ -46,12 +46,12 @@ class OrderAddress extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'order_id' => 'Order ID',
-            'address' => 'Address',
-            'city' => 'City',
-            'state' => 'State',
-            'country' => 'Country',
-            'zipcode' => 'Zipcode',
+            'order_id' => Yii::t('app', 'Order ID'),
+            'address' => Yii::t('app', 'Address'),
+            'city' => Yii::t('app', 'City'),
+            'state' => Yii::t('app', 'State'),
+            'country' => Yii::t('app', 'Country'),
+            'zipcode' => Yii::t('app', 'Zipcode'),
         ];
     }
 

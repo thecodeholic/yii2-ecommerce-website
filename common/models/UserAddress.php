@@ -46,13 +46,13 @@ class UserAddress extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'user_id' => 'User ID',
-            'address' => 'Address',
-            'city' => 'City',
-            'state' => 'State',
-            'country' => 'Country',
-            'zipcode' => 'Zipcode',
+            'id' => Yii::t('app', 'ID'),
+            'user_id' => Yii::t('app', 'User ID'),
+            'address' => Yii::t('app', 'Address'),
+            'city' => Yii::t('app', 'City'),
+            'state' => Yii::t('app', 'State'),
+            'country' => Yii::t('app', 'Country'),
+            'zipcode' => Yii::t('app', 'Zipcode'),
         ];
     }
 

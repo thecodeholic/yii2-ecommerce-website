@@ -69,4 +69,11 @@ class ResetPasswordForm extends Model
     {
         return User::findByPasswordResetToken($token);
     }
+
+    public function attributeLabels()
+    {
+        return [
+            'password' => Yii::t('app', 'Password')
+        ];
+    }
 }
