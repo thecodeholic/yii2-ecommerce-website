@@ -26,9 +26,10 @@ return [
                 'app*' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@common/messages',
-                    'on missingTranslation' => function(\yii\i18n\MissingTranslationEvent $event) {
-                        $event->translatedMessage = '[['.$event->message.' - '.$event->category. ' - '.$event->language.']]';
-                    }
+                    'on missingTranslation' => [
+                        '\common\components\TranslationEventHandler',
+                        'handleMissingTranslation'
+                    ]
                 ],
                 '*' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
