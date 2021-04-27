@@ -29,6 +29,7 @@ class AppController extends Controller
         $user->username = $username;
         $user->admin = 1;
         $user->status = User::STATUS_ACTIVE;
+        $user->auth_key = \Yii::$app->security->generateRandomString();
         $password = $password ?: \Yii::$app->security->generateRandomString(8);
         $user->setPassword($password);
         if ($user->save()) {
