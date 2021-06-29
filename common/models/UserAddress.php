@@ -52,7 +52,7 @@ class UserAddress extends \yii\db\ActiveRecord
             'city' => Yii::t('app', 'City'),
             'state' => Yii::t('app', 'State'),
             'country' => Yii::t('app', 'Country'),
-            'zipcode' => Yii::t('app', 'Zipcode'),
+            'zipcode' => Yii::t('app', 'ZipCode'),
         ];
     }
 
