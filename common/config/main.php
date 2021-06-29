@@ -2,7 +2,7 @@
 require_once __DIR__.'/../../common/helpers.php';
 
 return [
-    'language' => 'de-DE', // ka-GE
+    'language' => 'en-US', // ka-GE
     'sourceLanguage' => 'en-US',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',

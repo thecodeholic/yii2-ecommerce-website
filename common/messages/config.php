@@ -5,7 +5,7 @@ return [
     'sourcePath' => __DIR__ . DIRECTORY_SEPARATOR . '../..',
     // array, required, list of language codes that the extracted messages
     // should be translated to. For example, ['zh-CN', 'de'].
-    'languages' => ['de-DE', 'ka-GE'],
+    'languages' => ['ar-AE', 'de-DE', 'es-ES', 'fr-FR', 'hi-IN', 'it-IT', 'ja-JP', 'ka-GE', 'ko-KR', 'pl-PL', 'pt-BR', 'ru-RU', 'tr-TR', 'vi-VN', 'zh-CH',],
     // string, the name of the function for translating messages.
     // Defaults to 'Yii::t'. This is used as a mark to find the messages to be
     // translated. You may use a string for single function name or an array for
@@ -17,7 +17,7 @@ return [
     'sort' => true,
     // boolean, whether to remove messages that no longer appear in the source code.
     // Defaults to false, which means these messages will NOT be removed.
-    'removeUnused' => false,
+    'removeUnused' => true,
     // boolean, whether to mark messages that no longer appear in the source code.
     // Defaults to true, which means each of these messages will be enclosed with a pair of '@@' marks.
     'markUnused' => true,
@@ -41,7 +41,7 @@ return [
     ],
 
     // 'php' output format is for saving messages to php files.
-//    'format' => 'php',
+    'format' => 'php',
     // Root directory containing message translations.
     'messagePath' => __DIR__,
     // boolean, whether the message file should be overwritten with the merged messages
@@ -62,9 +62,9 @@ return [
 
 
     // 'db' output format is for saving messages to database.
-    'format' => 'db',
+    //'format' => 'db',
     // Connection component to use. Optional.
-    'db' => 'db',
+    //'db' => 'db',
     // Custom source message table. Optional.
     // 'sourceMessageTable' => '{{%source_message}}',
     // Custom name for translation message table. Optional.
